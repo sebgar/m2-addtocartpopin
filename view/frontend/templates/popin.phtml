@@ -1,0 +1,29 @@
+<?php
+/** @var \Sga\AddToCartPopin\Block\Popin $block */
+
+if ($block->isEnable()) :
+    $popinData = [
+        'url' => $block->getUrl('addtocartpopin/product/view'),
+        'elements' => [
+            'modal' => '#add-to-cart-popin',
+        ],
+        'popin_options' => [
+            'title' => __('Product Added To Cart'),
+            'type' => 'popup',
+            'modalClass' => 'popin-add-to-cart',
+            'responsive' => true,
+            'innerScroll' => true,
+            'buttons' => []
+        ]
+    ];
+?>
+    <div id="add-to-cart-popin"></div>
+
+    <script type="text/x-magento-init">
+    {
+        "#add-to-cart-popin":{
+            "add-to-cart-popin": <?= json_encode($popinData) ?>
+        }
+    }
+    </script>
+<?php endif ?>

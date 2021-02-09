@@ -1,0 +1,21 @@
+<?php
+/** @var \Sga\AddToCartPopin\Block\Popin $block */
+/* @var $escaper \Magento\Framework\Escaper */
+
+if ($block->isEnable()) :
+    $urlContinue = (string)$block->getUrlContinue();
+    ?>
+    <?= $block->getChildHtml('before') ?>
+
+    <div class="actions">
+        <a href="<?= $block->getUrl('checkout/cart') ?>" class="btn"><?= $escaper->escapeHtml(__('View cart')) ?></a>
+
+        <?php if ($urlContinue !== ''): ?>
+            <a href="<?= $block->getUrl().ltrim('/', $urlContinue) ?>" class="link-btn"><?= $escaper->escapeHtml(__('Continue Shopping')) ?></a>
+        <?php else: ?>
+            <a href="#" onclick="jQuery('.modal-popup .action-close').click()" class="link-btn"><?= $escaper->escapeHtml(__('Continue Shopping')) ?></a>
+        <?php endif ?>
+    </div>
+
+    <?= $block->getChildHtml('after') ?>
+<?php endif ?>
